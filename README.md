@@ -1,176 +1,54 @@
 ﻿# AI E-Commerce Engine 🚀
 
-![Node.js](https://img.shields.io/badge/Node.js-20-green)
-![React](https://img.shields.io/badge/React-Vite-blue)
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-green)
-![Redis](https://img.shields.io/badge/Redis-Cache-red)
-![Docker](https://img.shields.io/badge/Docker-Supported-blue)
-![AI](https://img.shields.io/badge/AI-Recommendations-purple)
+[![CI](https://github.com/CodeWithArafath/ai-ecommerce-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeWithArafath/ai-ecommerce-engine/actions)
 
-A full-stack e-commerce platform built with MERN architecture featuring authentication, product management, caching, and AI-powered search architecture.
+A production-style AI-powered e-commerce platform built with MERN architecture.
 
----
+## Core Features
 
-# Features
-
-## Authentication
-- JWT based login
-- Role based access
-- Protected APIs
-
-## Product Management
-- Create products
-- Update products
-- Delete products
-- Search products
-- Filtering
-- Pagination
-
-## Performance
-- Redis caching layer
-- Optimized API structure
-
-## AI Capabilities
-- Product embeddings architecture
-- Semantic search module
-- Recommendation engine
-
----
-
-# Tech Stack
-
-## Frontend
-- React
-- Vite
-- Axios
-- Tailwind CSS
-
-## Backend
-- Node.js
-- Express.js
-- JWT
+- JWT Authentication
+- Product Management
 - REST APIs
-
-## Database
-- MongoDB
-- Mongoose
-
-## Infrastructure
-- Docker
-- Redis
-- GitHub Actions CI
-
----
-
-# Architecture
-
-            User
-
-             |
-
-          React
-
-             |
-
-        Express API
-
-             |
-
-    ----------------
-
-    |              |
-
- MongoDB        Redis
-
-    |
-
- AI Layer
----
-
-# API Examples
+- MongoDB Architecture
+- Redis Cache Layer
+- React Admin Dashboard
+- AI Embedding Service
+- Semantic Search Architecture
+- Docker Support
+- CI Pipeline
 
 
-## Login
+## Repository
 
-POST
-
-/api/auth/login
-
-
-## Products
-
-GET
-
-/api/products
-
-
-POST
-
-/api/products
-
-
-PUT
-
-/api/products/:id
-
-
-DELETE
-
-/api/products/:id
-
-
----
-
-# Project Structure
-
-client/
-React application
-
-server/
-controllers
-routes
-models
-middleware
-services
-ai
-
-docs/
-API documentation
-AI documentation
-
-docker-compose.yml
-
-
----
-
-# Running Project
-
-
-Backend:
-
-
-cd server
-npm install
-npm run dev
-
+Backend:server/
 
 
 Frontend:
 
-
-cd client
-npm install
-npm run dev
+client/
 
 
+Documentation:
 
----
+docs/
 
-# Future Improvements
 
-- Real vector database integration
-- Cloud deployment
-- AI shopping assistant
-- Advanced analytics
-- Payment integration
+
+## Engineering Practices
+
+✓ Modular architecture  
+✓ Environment configuration  
+✓ API documentation  
+✓ Automated tests  
+✓ Container support  
+✓ GitHub Actions workflow  
+
+
+## Future Roadmap
+
+- Production deployment
+- Payment gateway
+- Advanced AI recommendations
+- Analytics dashboard
+- Vector database integration
 
