@@ -1,33 +1,58 @@
 ﻿# AI E-Commerce Engine 🚀
 
-A high-performance e-commerce platform built with MERN stack, Redis caching, JWT authentication, and AI-powered semantic search.
+A full-stack MERN based e-commerce platform with authentication, product management, caching architecture and AI-ready search design.
 
 ## Features
 
 ### Backend
-- REST API with Express.js
+- Node.js + Express REST API
 - JWT Authentication
-- Product CRUD
+- Role based users
+- Product CRUD APIs
+- Search and filtering
 - Pagination
-- Filtering
-- Sorting
-- Search
-- Error Handling
-
-### Performance
-- Redis Cache-Aside Pattern
-- Reduced MongoDB queries
-- Cache invalidation
-
-### AI Features
-- Product embeddings
-- Semantic search
-- Similar product recommendations
+- Error handling
 
 ### Frontend
-- React 19
-- Admin Dashboard
-- Product Management
+- React + Vite
+- Axios API integration
+- Dashboard architecture
+- Product management UI
+
+### Architecture
+
+React Client
+|
+Express API
+|
+Database Layer
+|
+Cache Layer
+|
+AI Search Layer
+
+
+## Project Structure
+
+
+ai-ecommerce-engine
+
+├── client
+│ ├── src
+│ ├── components
+│ └── pages
+
+├── server
+│ ├── controllers
+│ ├── models
+│ ├── routes
+│ ├── middleware
+│ ├── services
+│ └── utils
+
+└── docs
+└── API.md
+
 
 ## Tech Stack
 
@@ -43,57 +68,41 @@ Backend:
 - MongoDB
 - Redis
 
-AI:
-- Vector Search
-- Embeddings
-
-## Architecture
-
-User
- |
-React Client
- |
-Express API
- |
-Redis Cache
- |
-MongoDB
- |
-AI Vector Search
+Security:
+- JWT Authentication
+- Environment Variables
 
 
 ## Installation
 
 Backend:
 
+
 cd server
 npm install
 npm run dev
 
 
+
 Frontend:
+
 
 cd client
 npm install
 npm run dev
 
 
-## API Endpoints
 
-Authentication:
-POST /api/auth/register
-POST /api/auth/login
+## API Documentation
 
-Products:
-GET /api/products
-POST /api/products
-PUT /api/products/:id
-DELETE /api/products/:id
+See:
+docs/API.md
 
 
-## Future Improvements
+## Future Enhancements
 
-- MongoDB Vector Search
-- Docker Deployment
-- CI/CD Pipeline
-- Monitoring
+- AI semantic search
+- Product recommendations
+- Vector database
+- Docker deployment
+- CI/CD pipeline
