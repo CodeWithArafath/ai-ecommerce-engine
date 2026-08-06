@@ -1,10 +1,10 @@
-﻿# AI Module Documentation
+﻿# AI Integration
 
 
-## AI Architecture
+## Current AI Architecture
 
 
-User Query
+Product text
 
 ↓
 
@@ -12,41 +12,49 @@ Embedding Generation
 
 ↓
 
-Vector Similarity Search
+Vector Representation
 
 ↓
 
-Ranking Algorithm
+Similarity Matching
 
 ↓
 
-Recommended Products
+Recommendations
 
 
 
-## Components
+## AI Endpoint
 
 
-### Embedding Service
+POST
 
-Converts product text into numerical vectors.
-
-
-### Semantic Search
-
-Finds products based on meaning instead of only keywords.
+/api/ai/embedding
 
 
-### Recommendation Engine
+Example:
 
-Suggests related products using product metadata.
+{
+"text":"Apple smartphone with advanced camera"
+}
+
+
+Returns:
+
+Vector embedding representation.
 
 
 
-## Future Integration
+## Supported Models
 
 - OpenAI Embeddings
-- HuggingFace Transformers
+- HuggingFace Models
+- Vector Databases
+
+
+Future:
+
 - MongoDB Vector Search
-- Pinecone / FAISS
+- AI shopping assistant
+- Personalized recommendations
 
