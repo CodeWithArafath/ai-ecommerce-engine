@@ -1,28 +1,60 @@
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+﻿import {useEffect,useState} from "react";
+import API from "../api/axios";
 
-function Dashboard(){
 
-return(
+export default function Dashboard(){
+
+
+const [products,setProducts]=useState([]);
+
+
+useEffect(()=>{
+
+API.get("/products")
+.then(res=>{
+
+setProducts(
+res.data.data.products || []
+);
+
+});
+
+
+},[]);
+
+
+
+return (
 
 <div>
-
-<Navbar/>
-
-<Sidebar/>
 
 <h1>
 Admin Dashboard
 </h1>
 
-<p>
-Welcome to AI Ecommerce Engine
-</p>
+
+<h3>
+Products
+</h3>
+
+
+{
+products.map(product=>(
+
+<div key={product.id}>
+
+{product.name}
 
 </div>
 
-)
+))
 
 }
 
-export default Dashboard;
+
+</div>
+
+);
+
+
+}

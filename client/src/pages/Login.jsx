@@ -1,61 +1,73 @@
-import { useState } from "react";
-import api from "../api/axios";
+﻿import {useState} from "react";
+import API from "../api/axios";
+import {useNavigate} from "react-router-dom";
 
-function Login() {
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
 
-  const login = async(e)=>{
-    e.preventDefault();
+export default function Login(){
 
-    try{
-      const res = await api.post("/auth/login",{
-        email,
-        password
-      });
 
-      localStorage.setItem(
-        "token",
-        res.data.data.token
-      );
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
 
-      alert("Login successful");
-      window.location.href="/dashboard";
+const navigate=useNavigate();
 
-    }catch(err){
-  console.log(err.response);
-  alert(
-    err.response?.data?.message || 
-    "Server error"
-  );
-}
-  };
 
-  return (
-    <div>
-      <h1>Admin Login</h1>
+const login=async()=>{
 
-      <form onSubmit={login}>
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={e=>setEmail(e.target.value)}
-        />
+try{
 
-        <input
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={e=>setPassword(e.target.value)}
-        />
+const res=await API.post("/auth/login",{
+email,
+password
+});
 
-        <button>
-          Login
-        </button>
-      </form>
 
-    </div>
-  );
+localStorage.setItem(
+"token",
+res.data.data.token
+);
+
+
+navigate("/dashboard");
+
+
+}catch(err){
+
+alert("Invalid login");
+
 }
 
-export default Login;
+
+};
+
+
+return (
+
+<div>
+
+<h2>Admin Login</h2>
+
+<input
+placeholder="Email"
+onChange={e=>setEmail(e.target.value)}
+/>
+
+
+<input
+placeholder="Password"
+type="password"
+onChange={e=>setPassword(e.target.value)}
+/>
+
+
+<button onClick={login}>
+Login
+</button>
+
+
+</div>
+
+);
+
+
+}
