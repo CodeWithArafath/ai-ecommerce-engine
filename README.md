@@ -106,3 +106,9 @@ docs/API.md
 - Vector database
 - Docker deployment
 - CI/CD pipeline
+
+## Documentation
+
+- API Documentation: docs/API.md
+- Environment Setup: docs/ENVIRONMENT.md
+- Project Status: docs/PROJECT_STATUS.md
