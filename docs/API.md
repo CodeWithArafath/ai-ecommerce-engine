@@ -3,18 +3,20 @@
 ## Authentication
 
 ### Register User
+
 POST /api/auth/register
 
 Body:
+
 {
- "name":"User",
- "email":"user@test.com",
- "password":"password",
- "role":"admin"
+"name":"User",
+"email":"user@test.com",
+"password":"123456"
 }
 
 
 ### Login
+
 POST /api/auth/login
 
 Returns JWT token.
@@ -22,35 +24,28 @@ Returns JWT token.
 
 ## Products
 
-### Get Products
+
 GET /api/products
 
-Supports:
-- Search
-- Category filter
-- Pagination
-- Sorting
+Fetch products with:
+
+- search
+- category
+- pagination
+- sorting
 
 
-### Create Product
 POST /api/products
 
-Authorization:
-Bearer JWT Token
+Create product (JWT required)
 
 
-### Update Product
 PUT /api/products/:id
 
+Update product
 
-### Delete Product
+
 DELETE /api/products/:id
 
+Delete product
 
-## Response Format
-
-{
- "success":true,
- "message":"message",
- "data":{}
-}
