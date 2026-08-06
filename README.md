@@ -1,114 +1,100 @@
 ﻿# AI E-Commerce Engine 🚀
 
-A full-stack MERN based e-commerce platform with authentication, product management, caching architecture and AI-ready search design.
+Production-style AI powered e-commerce platform using MERN architecture.
 
-## Features
+## Implemented Features
 
 ### Backend
-- Node.js + Express REST API
+- Express REST API
 - JWT Authentication
-- Role based users
+- User roles
 - Product CRUD APIs
-- Search and filtering
+- Search
+- Filtering
 - Pagination
+- Sorting
 - Error handling
+
+### Database
+- MongoDB integration
+- Mongoose models
+- Product schema
+- User schema
+
+### Performance
+- Redis cache layer
+- Cache service architecture
 
 ### Frontend
 - React + Vite
-- Axios API integration
-- Dashboard architecture
-- Product management UI
+- Admin dashboard
+- Product management
+- Protected routes
 
-### Architecture
+### AI Roadmap
+- Product embeddings
+- Semantic search
+- Recommendation engine
+- AI shopping assistant
+
+## Architecture
 
 React Client
-|
+        |
+        |
 Express API
-|
-Database Layer
-|
-Cache Layer
-|
-AI Search Layer
+        |
+        |
+MongoDB + Redis
+        |
+        |
+AI Recommendation Layer
 
 
-## Project Structure
+## API
+
+Authentication
+
+POST /api/auth/register
+
+POST /api/auth/login
 
 
-ai-ecommerce-engine
+Products
 
-├── client
-│ ├── src
-│ ├── components
-│ └── pages
+GET /api/products
 
-├── server
-│ ├── controllers
-│ ├── models
-│ ├── routes
-│ ├── middleware
-│ ├── services
-│ └── utils
+POST /api/products
 
-└── docs
-└── API.md
+PUT /api/products/:id
+
+DELETE /api/products/:id
 
 
-## Tech Stack
-
-Frontend:
-- React
-- Vite
-- Axios
-- Tailwind CSS
+## Setup
 
 Backend:
-- Node.js
-- Express.js
-- MongoDB
-- Redis
-
-Security:
-- JWT Authentication
-- Environment Variables
-
-
-## Installation
-
-Backend:
-
 
 cd server
-npm install
-npm run dev
 
+npm install
+
+npm run dev
 
 
 Frontend:
 
-
 cd client
+
 npm install
+
 npm run dev
-
-
-
-## API Documentation
-
-See:
-docs/API.md
 
 
 ## Future Enhancements
 
-- AI semantic search
-- Product recommendations
-- Vector database
 - Docker deployment
 - CI/CD pipeline
-
-## Documentation
-
-- API Documentation: docs/API.md
-- Environment Setup: docs/ENVIRONMENT.md
-- Project Status: docs/PROJECT_STATUS.md
+- Vector database
+- AI recommendations
+- Cloud deployment
