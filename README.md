@@ -1,100 +1,33 @@
 ﻿# AI E-Commerce Engine 🚀
 
-Production-style AI powered e-commerce platform using MERN architecture.
+![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
+![Redis](https://img.shields.io/badge/Redis-Cache-red)
+![AI](https://img.shields.io/badge/AI-Semantic_Search-purple)
 
-## Implemented Features
+A production-style MERN e-commerce platform with authentication, caching and AI-powered search.
 
-### Backend
-- Express REST API
-- JWT Authentication
-- User roles
-- Product CRUD APIs
-- Search
-- Filtering
-- Pagination
-- Sorting
-- Error handling
+## Highlights
 
-### Database
-- MongoDB integration
-- Mongoose models
-- Product schema
-- User schema
+⭐ JWT Authentication  
+⭐ Product Management  
+⭐ Redis Cache Layer  
+⭐ MongoDB Architecture  
+⭐ React Admin Dashboard  
+⭐ AI Recommendation Engine  
+⭐ Docker Support  
+⭐ CI Pipeline
 
-### Performance
-- Redis cache layer
-- Cache service architecture
-
-### Frontend
-- React + Vite
-- Admin dashboard
-- Product management
-- Protected routes
-
-### AI Roadmap
-- Product embeddings
-- Semantic search
-- Recommendation engine
-- AI shopping assistant
 
 ## Architecture
 
-React Client
-        |
-        |
-Express API
-        |
-        |
-MongoDB + Redis
-        |
-        |
-AI Recommendation Layer
+React → Express → MongoDB → Redis → AI Layer
 
 
-## API
+## Documentation
 
-Authentication
+- API Docs: docs/API.md
+- AI Docs: docs/AI.md
+- Structure: docs/STRUCTURE.md
 
-POST /api/auth/register
-
-POST /api/auth/login
-
-
-Products
-
-GET /api/products
-
-POST /api/products
-
-PUT /api/products/:id
-
-DELETE /api/products/:id
-
-
-## Setup
-
-Backend:
-
-cd server
-
-npm install
-
-npm run dev
-
-
-Frontend:
-
-cd client
-
-npm install
-
-npm run dev
-
-
-## Future Enhancements
-
-- Docker deployment
-- CI/CD pipeline
-- Vector database
-- AI recommendations
-- Cloud deployment
