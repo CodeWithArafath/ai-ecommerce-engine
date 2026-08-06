@@ -1,130 +1,119 @@
-const QueryFeatures = require("../utils/queryFeatures");
-const { success, error } = require("../utils/apiResponse");
+﻿const Product = require("../models/Product");
+const {success,error}=require("../utils/apiResponse");
 
-// Temporary product storage (will be replaced by MongoDB later)
-const products = require("../data/products");
 
-const getProducts = (req, res) => {
-  try {
-    let result = new QueryFeatures(products, req.query)
-      .search()
-      .filter()
-      .sort();
+exports.getProducts = async(req,res)=>{
+try{
 
-    const total = result.data.length;
+const {
+search,
+category,
+page=1,
+limit=20,
+sort
+}=req.query;
 
-    result.paginate();
 
-    return success(
-      res,
-      {
-        products: result.data,
-        total,
-        page: Number(req.query.page) || 1,
-        limit: Number(req.query.limit) || 20,
-      },
-      "Products fetched successfully"
-    );
+let query={};
 
-  } catch (err) {
-    return error(res, err.message);
-  }
+
+if(search){
+query={
+$or:[
+{name:{$regex:search,$options:"i"}},
+{brand:{$regex:search,$options:"i"}},
+{category:{$regex:search,$options:"i"}}
+]
+};
+}
+
+
+if(category){
+query.category=category;
+}
+
+
+let products=await Product.find(query)
+.sort(sort==="price"?{price:1}:{})
+.skip((page-1)*limit)
+.limit(Number(limit));
+
+
+const total=await Product.countDocuments(query);
+
+
+return success(res,{
+products,
+total,
+page:Number(page),
+limit:Number(limit)
+},"Products fetched successfully");
+
+
+}catch(err){
+return error(res,err.message);
+}
+
 };
 
 
-const createProduct = (req, res) => {
-  try {
-    const product = {
-      id: Date.now(),
-      ...req.body,
-    };
 
-    products.push(product);
+exports.createProduct=async(req,res)=>{
+try{
 
-    return success(
-      res,
-      product,
-      "Product created successfully",
-      201
-    );
+const product=await Product.create(req.body);
 
-  } catch (err) {
-    return error(res, err.message);
-  }
+return success(res,product,"Product created successfully",201);
+
+}catch(err){
+return error(res,err.message);
+}
+
 };
 
 
-const getProductById = (req, res) => {
-  try {
-    const product = products.find(
-      (p) => p.id == req.params.id
-    );
+exports.getProduct=async(req,res)=>{
+try{
 
-    if (!product) {
-      return error(res, "Product not found", 404);
-    }
+const product=await Product.findById(req.params.id);
 
-    return success(
-      res,
-      product,
-      "Product fetched successfully"
-    );
+return success(res,product);
 
-  } catch (err) {
-    return error(res, err.message);
-  }
+}catch(err){
+return error(res,err.message);
+}
+
 };
 
 
-const updateProduct = (req, res) => {
-  try {
-    const index = products.findIndex(
-      (p) => p.id == req.params.id
-    );
+exports.updateProduct=async(req,res)=>{
+try{
 
-    if (index === -1) {
-      return error(res, "Product not found", 404);
-    }
+const product=await Product.findByIdAndUpdate(
+req.params.id,
+req.body,
+{new:true}
+);
 
-    products[index] = {
-      ...products[index],
-      ...req.body,
-    };
+return success(res,product,"Product updated");
 
-    return success(
-      res,
-      products[index],
-      "Product updated successfully"
-    );
+}catch(err){
+return error(res,err.message);
+}
 
-  } catch (err) {
-    return error(res, err.message);
-  }
 };
 
 
-const deleteProduct = (req, res) => {
-  try {
-    products = products.filter(
-      (p) => p.id != req.params.id
-    );
+exports.deleteProduct=async(req,res)=>{
+try{
 
-    return success(
-      res,
-      null,
-      "Product deleted successfully"
-    );
+await Product.findByIdAndDelete(req.params.id);
 
-  } catch (err) {
-    return error(res, err.message);
-  }
-};
+return success(res,null,"Product deleted");
 
 
-module.exports = {
-  getProducts,
-  createProduct,
-  getProductById,
-  updateProduct,
-  deleteProduct,
+}catch(err){
+return error(res,err.message);
+}
+
 };
