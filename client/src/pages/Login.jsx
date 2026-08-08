@@ -1,73 +1,98 @@
-﻿import {useState} from "react";
-import API from "../api/axios";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../api/auth";
+import { useApp } from "../context/AppContext";
 
+export default function Login() {
+  const navigate = useNavigate();
+  const { setUser } = useApp();
 
-export default function Login(){
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
+  const [error, setError] = useState("");
 
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+  const submit = async (e) => {
+    e.preventDefault();
+    setError("");
 
-const navigate=useNavigate();
+    try {
+      const res = await login(form);
+      const data = res.data;
 
+      const token =
+        data.token ||
+        data.data?.token ||
+        data.user?.token;
 
-const login=async()=>{
+      const user =
+        data.user ||
+        data.data?.user ||
+        null;
 
-try{
+      if (token) {
+        localStorage.setItem("token", token);
+      }
 
-const res=await API.post("/auth/login",{
-email,
-password
-});
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+      }
 
+      navigate("/");
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+        "Login failed"
+      );
+    }
+  };
 
-localStorage.setItem(
-"token",
-res.data.data.token
-);
+  return (
+    <main className="auth-page">
+      <form className="auth-card" onSubmit={submit}>
+        <span className="eyebrow">Welcome back</span>
+        <h1>Login</h1>
 
+        {error && <div className="error">{error}</div>}
 
-navigate("/dashboard");
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={form.email}
+          onChange={(e) =>
+            setForm({
+              ...form,
+              email: e.target.value,
+            })
+          }
+        />
 
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          value={form.password}
+          onChange={(e) =>
+            setForm({
+              ...form,
+              password: e.target.value,
+            })
+          }
+        />
 
-}catch(err){
+        <button className="primary-btn full">
+          Login
+        </button>
 
-alert("Invalid login");
-
-}
-
-
-};
-
-
-return (
-
-<div>
-
-<h2>Admin Login</h2>
-
-<input
-placeholder="Email"
-onChange={e=>setEmail(e.target.value)}
-/>
-
-
-<input
-placeholder="Password"
-type="password"
-onChange={e=>setPassword(e.target.value)}
-/>
-
-
-<button onClick={login}>
-Login
-</button>
-
-
-</div>
-
-);
-
-
+        <p>
+          Don't have an account?{" "}
+          <Link to="/register">Register</Link>
+        </p>
+      </form>
+    </main>
+  );
 }

@@ -1,31 +1,13 @@
-﻿const embeddingService = require("./embeddingService");
-
+﻿const {
+    semanticSearch
+} = require("./services/semanticSearchService");
 
 class SemanticSearch {
 
-
-    search(products,query){
-
-
-        const queryVector =
-        embeddingService.generateEmbedding(query);
-
-
-        return products.map(product=>({
-
-            product,
-
-            similarity:
-            Math.random()
-
-        }))
-        .sort((a,b)=>b.similarity-a.similarity);
-
-
+    async search(query, options = {}) {
+        return semanticSearch(query, options);
     }
 
-
 }
-
 
 module.exports = new SemanticSearch();

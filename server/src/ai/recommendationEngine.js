@@ -1,27 +1,22 @@
-﻿class RecommendationEngine {
+﻿const {
+    rankProducts
+} = require("./services/recommendationRankingService");
 
+class RecommendationEngine {
 
-    getRecommendations(product){
+    getRecommendations(products, options = {}) {
 
+        if (!Array.isArray(products)) {
+            return [];
+        }
 
-        return {
-
-            basedOn:
-            product.category,
-
-            recommendations:[
-                "Similar products",
-                "Frequently bought items",
-                "Trending products"
-            ]
-
-        };
-
-
+        return rankProducts(
+            products,
+            options
+        );
     }
-
 
 }
 
-
-module.exports = new RecommendationEngine();
+module.exports =
+    new RecommendationEngine();

@@ -1,19 +1,11 @@
-﻿class EmbeddingService {
+﻿const {
+    generateEmbedding,
+    generateProductEmbedding,
+    generateAllProductEmbeddings
+} = require("./services/embeddingService");
 
-    generateEmbedding(text){
-
-        // Placeholder for OpenAI / HuggingFace embeddings
-
-        const vector = text
-        .split("")
-        .map(char => char.charCodeAt(0));
-
-        return vector;
-
-    }
-
-
-}
-
-
-module.exports = new EmbeddingService();
+module.exports = {
+    generateEmbedding,
+    generateProductEmbedding,
+    generateAllProductEmbeddings
+};

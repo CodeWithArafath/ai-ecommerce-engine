@@ -1,0 +1,4 @@
+AI E-Commerce Engine
+Frontend integration completed
+API base: http://localhost:5000/api
+Generated: 08/08/2026 22:21:40
